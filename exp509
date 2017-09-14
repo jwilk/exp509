@@ -11,7 +11,7 @@ import ssl
 import sys
 import time
 
-lambda: (yield from 0)  # Python >= 3.4 is required
+...  # Python >= 3.4 is required
 
 def require_python(*version):
     if sys.version_info < version:
