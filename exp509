@@ -41,8 +41,11 @@ def main():
             socket.socket(),
             server_hostname=host
         )
-        tsock.connect((host, port))
-        cert = tsock.getpeercert()
+        try:
+            tsock.connect((host, port))
+            cert = tsock.getpeercert()
+        finally:
+            tsock.close()
         exp = cert['notAfter']
         exp = datetime.datetime.strptime(exp, '%b %d %H:%M:%S %Y GMT')
         exp = exp.replace(tzinfo=datetime.timezone.utc)
