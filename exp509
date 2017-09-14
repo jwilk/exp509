@@ -30,6 +30,7 @@ def main():
     options = ap.parse_args()
     threshold = datetime.timedelta(days=options.threshold)
     context = ssl.create_default_context()
+    rc = 0
     for host in options.hosts:
         orig_host = host
         if ':' in host:
@@ -54,6 +55,8 @@ def main():
             lexp = time.localtime(exp.timestamp())
             lexp = time.strftime('%Y-%m-%d %H:%M', lexp)
             print('{host}: certificate expires on {exp}'.format(host=orig_host, exp=lexp))
+            rc = 1
+    sys.exit(rc)
 
 if __name__ == '__main__':
     main()
