@@ -1,5 +1,15 @@
 .. code:: console
 
+   $ exp509 --help
+   usage: exp509 [-h] -t N HOST[:PORT] [HOST[:PORT] ...]
+
+   positional arguments:
+     HOST[:PORT]
+
+   optional arguments:
+     -h, --help           show this help message and exit
+     -t N, --threshold N  alert when cert expires in N days (or less)
+
    $ exp509 -t 90 jwilk.net
    jwilk.net: certificate expires on 2017-11-20 03:04
 
