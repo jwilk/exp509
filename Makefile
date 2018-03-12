@@ -11,7 +11,7 @@ all: ;
 install: exp509
 	install -d $(DESTDIR)$(PREFIX)/bin
 	install -m755 $(<) $(DESTDIR)$(PREFIX)/bin/$(<)
-	
+
 .PHONY: clean
 clean: ;
 
