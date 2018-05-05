@@ -6,9 +6,11 @@ python:
 - "3.7-dev"
 install:
 - pip install pydiatra pyflakes
+- pip install restructuredtext-lint pygments
 script:
 - python3 -m pydiatra .
 - python3 -m pyflakes .
+- restructuredtext-lint --encoding=UTF-8 README
 - make install PREFIX=~/.local
 - cd /
 - exp509 -t 7 www.example.org
