@@ -11,16 +11,9 @@ import ssl
 import sys
 import time
 
-...  # Python >= 3.4 is required
-
-def require_python(*version):
-    if sys.version_info < version:
-        version_str = '.'.join(str(x) for x in version)
-        message = 'Python >= {0} is required'.format(version_str)
-        raise RuntimeError(message)
+0_0  # Python >= 3.6 is required
 
 def main():
-    require_python(3, 4)
     ap = argparse.ArgumentParser()
     if sys.version_info < (3, 10):
         # https://bugs.python.org/issue9694
@@ -57,7 +50,7 @@ def main():
         if (exp - now < threshold):
             lexp = time.localtime(exp.timestamp())
             lexp = time.strftime('%Y-%m-%d %H:%M', lexp)
-            print('{host}: certificate expires on {exp}'.format(host=orig_host, exp=lexp))
+            print(f'{orig_host}: certificate expires on {lexp}'.format(host=orig_host))
             rc = 1
     sys.exit(rc)
 
