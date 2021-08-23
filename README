@@ -6,7 +6,7 @@
    positional arguments:
      HOST[:PORT]
 
-   optional arguments:
+   options:
      -h, --help           show this help message and exit
      -t N, --threshold N  alert when cert expires in N days (or less)
 

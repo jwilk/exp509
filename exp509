@@ -22,6 +22,9 @@ def require_python(*version):
 def main():
     require_python(3, 4)
     ap = argparse.ArgumentParser()
+    if sys.version_info < (3, 10):
+        # https://bugs.python.org/issue9694
+        ap._optionals.title = 'options'
     ap.add_argument('-t', '--threshold', metavar='N', required=True,
         help='alert when cert expires in N days (or less)',
         type=int,
