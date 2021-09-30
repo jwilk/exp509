@@ -41,6 +41,10 @@ def main():
         try:
             tsock.connect((host, port))
             cert = tsock.getpeercert()
+        except (ssl.SSLError, ssl.CertificateError) as exp:
+            print(f'{orig_host}: error: {exp}')
+            rc = 1
+            continue
         finally:
             tsock.close()
         exp = cert['notAfter']
