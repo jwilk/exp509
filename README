@@ -11,6 +11,6 @@
      -t N, --threshold N  alert when cert expires in N days (or less)
 
    $ exp509 -t 90 jwilk.net
-   jwilk.net: certificate expires on 2017-11-20 03:04
+   jwilk.net: certificate expires on 2021-11-15 05:02
 
 .. vim:ft=rst ts=3 sts=3 sw=3 et
