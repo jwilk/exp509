@@ -34,11 +34,8 @@ jobs:
     - name: install the program
       run: |
         make install PREFIX=~/.local
-    - name: smoke test
+    - name: run tests
       run: |
-        cd /
-        set +e
-        exp509 -t 7 www.example.org || exit 1
-        exp509 -t 1100 www.example.org; [ $? -eq 1 ] || exit 1
+        EXP509_NETWORK_TESTING=1 prove -v
 
 # vim:ts=2 sts=2 sw=2 et
