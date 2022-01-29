@@ -18,6 +18,7 @@ if [ -z "$diff" ]
 then
     echo 'ok 1'
 else
+    # shellcheck disable=SC2001
     sed -e 's/^/# /' <<< "$diff"
     echo 'not ok 1'
 fi
