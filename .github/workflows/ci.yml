@@ -30,7 +30,7 @@ jobs:
         python3 -m pyflakes .
     - name: check README syntax
       run: |
-        python3 -m pip install --user pygments restructuredtext-lint
+        python3 -m pip install --user restructuredtext-lint pygments 
         rst-lint --level=info --encoding=UTF-8 README
     - name: install the program
       run: |

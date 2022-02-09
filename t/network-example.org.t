@@ -11,14 +11,19 @@ then
     exit 0
 fi
 
+pdir="${0%/*}/.."
+prog="$pdir/exp509"
+
 i=0
 t()
 {
     i=$((i + 1))
     xstatus="$1"
     shift
+    [ "$1" = 'exp509' ]
+    shift
     set +e
-    "$@"
+    "$prog" "$@"
     status=$?
     set -e
     if [ "$status" -eq "$xstatus" ]
