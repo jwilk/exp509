@@ -20,6 +20,15 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: ${{matrix.python-version}}
+    - name: run tests
+      run: |
+        EXP509_NETWORK_TESTING=1 prove -v
+    - name: install the program
+      run: |
+        make install PREFIX=~/.local
+    - name: run shellcheck
+      run: |
+        shellcheck t/*.t
     - name: run pydiatra
       run: |
         python3 -m pip install --user pydiatra
@@ -32,14 +41,5 @@ jobs:
       run: |
         python3 -m pip install --user restructuredtext-lint pygments 
         rst-lint --level=info --encoding=UTF-8 README
-    - name: install the program
-      run: |
-        make install PREFIX=~/.local
-    - name: run tests
-      run: |
-        EXP509_NETWORK_TESTING=1 prove -v
-    - name: run shellcheck
-      run: |
-        shellcheck t/*.t
 
 # vim:ts=2 sts=2 sw=2 et
