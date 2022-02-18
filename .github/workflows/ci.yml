@@ -26,6 +26,10 @@ jobs:
     - name: install the program
       run: |
         make install PREFIX=~/.local
+    - name: check whether the executable was installed correctly
+      run: |
+        cd /
+        exp509 --help
     - name: run shellcheck
       run: |
         shellcheck t/*.t
