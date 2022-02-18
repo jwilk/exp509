@@ -22,11 +22,25 @@ def main():
         help='alert when cert expires in N days (or less)',
         type=int,
     )
+    ap.add_argument('-T', '--TAP', action='store_true', help='use TAP output')
     ap.add_argument('hosts', metavar='HOST[:PORT]', nargs='+')
     options = ap.parse_args()
     threshold = datetime.timedelta(days=options.threshold)
     context = ssl.create_default_context()
     rc = 0
+    if options.TAP:
+        print(1, '..', len(options.hosts), sep='')
+        def diag(*args):
+            print('#', *args)
+        tap_n = 0
+        def tap(status, msg):
+            nonlocal tap_n
+            tap_n += 1
+            print(status, tap_n, msg)
+    else:
+        diag = print
+        def tap(status, msg):
+            pass
     for host in options.hosts:
         orig_host = host
         if ':' in host:
@@ -42,7 +56,8 @@ def main():
             tsock.connect((host, port))
             cert = tsock.getpeercert()
         except (ssl.SSLError, ssl.CertificateError) as exp:
-            print(f'{orig_host}: error: {exp}')
+            diag(f'{orig_host}: error: {exp}')
+            tap('not ok', orig_host)
             rc = 1
             continue
         finally:
@@ -54,9 +69,13 @@ def main():
         if (exp - now < threshold):
             lexp = time.localtime(exp.timestamp())
             lexp = time.strftime('%Y-%m-%d %H:%M', lexp)
-            print(f'{orig_host}: certificate expires on {lexp}')
+            diag(f'{orig_host}: certificate expires on {lexp}')
+            tap('not ok', orig_host)
             rc = 1
-    sys.exit(rc)
+        else:
+            tap('ok', orig_host)
+    if not options.TAP:
+        sys.exit(rc)
 
 if __name__ == '__main__':
     main()
