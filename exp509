@@ -54,7 +54,7 @@ def main():
         if (exp - now < threshold):
             lexp = time.localtime(exp.timestamp())
             lexp = time.strftime('%Y-%m-%d %H:%M', lexp)
-            print(f'{orig_host}: certificate expires on {lexp}'.format(host=orig_host))
+            print(f'{orig_host}: certificate expires on {lexp}')
             rc = 1
     sys.exit(rc)
 
