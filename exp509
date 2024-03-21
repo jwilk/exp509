@@ -40,7 +40,7 @@ def main():
     else:
         diag = print
         def tap(status, msg):
-            pass
+            del status, msg
     for host in options.hosts:
         orig_host = host
         if ':' in host:
