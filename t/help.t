@@ -12,6 +12,11 @@ xout=${xout#*$'\n   $ exp509 --help\n   '}
 xout=${xout%$'\n\n   $ '*}
 xout=${xout//$'\n   '/$'\n'}
 out=$("$prog" --help)
+if [[ "$out" = *' -t N, --threshold N '* ]]
+then
+    out=${out/ -t N, / -t, }
+    out=${out//       /     }
+fi
 say() { printf "%s\n" "$@"; }
 diff=$(diff -u <(say "$xout") <(say "$out")) || true
 if [ -z "$diff" ]
