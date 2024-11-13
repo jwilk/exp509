@@ -7,9 +7,9 @@
      HOST[:PORT]
 
    options:
-     -h, --help           show this help message and exit
-     -t N, --threshold N  alert when cert expires in N days (or less)
-     -T, --TAP            use TAP output
+     -h, --help         show this help message and exit
+     -t, --threshold N  alert when cert expires in N days (or less)
+     -T, --TAP          use TAP output
 
    $ exp509 -t 90 jwilk.net
    jwilk.net: certificate expires on 2021-11-15 05:02
