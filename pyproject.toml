@@ -1,0 +1,22 @@
+# experimental support for building Python wheels
+
+# this project is NOT hosted on PyPI
+
+[project]
+name = "jwilk.exp509"
+version = "0"
+requires-python = ">= 3.6"
+
+[build-system]
+requires = ["setuptools >= 61"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+py-modules = []
+script-files = ["exp509"]
+
+[tool.distutils.sdist]
+# building sdist is not supported
+disabled = true
+
+# vim:ts=4 sts=4 sw=4 et
