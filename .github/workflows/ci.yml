@@ -33,7 +33,7 @@ jobs:
     - name: install the program
       run: |
         make install PREFIX=~/.local
-    - name: check whether the executable was installed correctly
+    - name: check if the executable was installed correctly
       run: |
         cd /
         exp509 --help
