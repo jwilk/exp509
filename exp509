@@ -55,7 +55,7 @@ def main():
         try:
             tsock.connect((host, port))
             cert = tsock.getpeercert()
-        except (ssl.SSLError, ssl.CertificateError, socket.error) as exp:
+        except OSError as exp:
             diag(f'{orig_host}: error: {exp}')
             tap('not ok', orig_host)
             rc = 1
