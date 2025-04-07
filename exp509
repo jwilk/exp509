@@ -9,7 +9,6 @@ import datetime
 import socket
 import ssl
 import sys
-import time
 
 0_0  # Python >= 3.6 is required
 
@@ -67,8 +66,8 @@ def main():
         exp = exp.replace(tzinfo=datetime.timezone.utc)
         now = datetime.datetime.now(datetime.timezone.utc)
         if exp - now < threshold:
-            lexp = time.localtime(exp.timestamp())
-            lexp = time.strftime('%Y-%m-%d %H:%M', lexp)
+            lexp = exp.astimezone().replace(tzinfo=None)
+            lexp = lexp.isoformat(sep=' ', timespec='minutes')
             diag(f'{orig_host}: certificate expires on {lexp}')
             tap('not ok', orig_host)
             rc = 1
