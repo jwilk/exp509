@@ -66,7 +66,7 @@ def main():
         exp = datetime.datetime.strptime(exp, '%b %d %H:%M:%S %Y GMT')
         exp = exp.replace(tzinfo=datetime.timezone.utc)
         now = datetime.datetime.now(datetime.timezone.utc)
-        if (exp - now < threshold):
+        if exp - now < threshold:
             lexp = time.localtime(exp.timestamp())
             lexp = time.strftime('%Y-%m-%d %H:%M', lexp)
             diag(f'{orig_host}: certificate expires on {lexp}')
