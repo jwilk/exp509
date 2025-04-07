@@ -10,7 +10,8 @@ import socket
 import ssl
 import sys
 
-0_0  # Python >= 3.6 is required
+async def _(): return f'{await "# Python >= 3.7 is required #"}'
+del _
 
 def main():
     ap = argparse.ArgumentParser()
