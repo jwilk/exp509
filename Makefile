@@ -13,7 +13,8 @@ install: exp509
 	install -m755 $(<) $(DESTDIR)$(PREFIX)/bin/$(<)
 
 .PHONY: clean
-clean: ;
+clean:
+	rm -rf build/ *.egg-info/
 
 .error = GNU make is required
 
